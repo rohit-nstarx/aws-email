@@ -28,7 +28,7 @@ class EmailContent(BaseModel):
 async def send_email(email_content: EmailContent):
     try:
         response = ses_client.send_email(
-            Source="kvgkrishnamurty@gmail.com",
+            Source="rohit.mnnit2017@gmail.com",
             Destination={"ToAddresses": email_content.EmailAddresses},
             Message={
                 "Subject": {"Data": email_content.subject},
