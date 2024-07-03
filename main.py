@@ -35,6 +35,8 @@ async def send_email(email_content: EmailContent):
                 "Body": {"Text": {"Data": email_content.message}}
             }
         )
+
+        print('response : ', response)
         return {"status": "Email sent successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
