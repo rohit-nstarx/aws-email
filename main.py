@@ -12,6 +12,7 @@ load_dotenv()
 AWS_ACCESS_KEY = os.environ["AWS_ACCESS_KEY"]
 AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 AWS_REGION = os.environ["AWS_REGION"]
+AWS_SESSION_TOKEN = os.environ["AWS_SESSION_TOKEN"]
 
 app = FastAPI()
 
@@ -27,6 +28,7 @@ ses_client = boto3.client(
     'ses', 
     aws_access_key_id=AWS_ACCESS_KEY, 
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY, 
+    aws_session_token=AWS_SESSION_TOKEN,
     region_name=AWS_REGION
     )
 class EmailContent(BaseModel):
