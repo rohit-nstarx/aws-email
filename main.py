@@ -4,6 +4,8 @@ from typing import List
 import boto3
 from dotenv import load_dotenv
 import os
+from fastapi.middleware.cors import CORSMiddleware
+
 
 load_dotenv()
 
@@ -12,6 +14,14 @@ AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 AWS_REGION = os.environ["AWS_REGION"]
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins, change in production for security
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods, specify if necessary in production
+    allow_headers=["*"],  # Allows all headers, consider specifying in production
+)
 
 ses_client = boto3.client(
     'ses', 
