@@ -25,10 +25,10 @@ class EmailContent(BaseModel):
     message: str = "Hello this is a test message from AWS SES"
 
 @app.post("/send-email")
-async def send_email(email_content: EmailContent):
+async def send_email(source: str, email_content: EmailContent):
     try:
         response = ses_client.send_email(
-            Source="rohit.mnnit2017@gmail.com",
+            Source=source,
             Destination={"ToAddresses": email_content.EmailAddresses},
             Message={
                 "Subject": {"Data": email_content.subject},
